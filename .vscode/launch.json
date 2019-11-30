@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Seeder",
+            "request": "launch",
+            "mainClass": "com.hotel.gestionhoteliere.generateData.Seeder",
+            "projectName": "GestionHoteliere"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
+            "mainClass": "com.hotel.gestionhoteliere.generateData.Main",
+            "projectName": "GestionHoteliere"
+        }
+    ]
+}
