@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 
 import javax.servlet.http.HttpSession;
 
+import com.hotel.gestionhoteliere.dao.entity.User;
 import com.hotel.gestionhoteliere.generateData.Md5;
 import com.hotel.gestionhoteliere.service.LoginDAO;
 import com.hotel.gestionhoteliere.service.SessionUtils;
@@ -58,8 +59,9 @@ public class Login implements Serializable {
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", user);
-			context.getExternalContext().redirect("admin.xhtml");
-			return "admin";
+			UserBean currentUser = new UserBean();
+			//context.getExternalContext().redirect("admin.xhtml");
+			return currentUser.getRole(user).getRoleName(); // renvoi du nom d'utilisateur connecte
 		} else {
 			context.addMessage(null, new FacesMessage("Authentication Failed. Check username or password."));
 			return "login";

@@ -8,8 +8,19 @@
     <navigation-rule>
 		<from-view-id>/login.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>admin</from-outcome>
+			<from-outcome>Admin</from-outcome>
 			<to-view-id>/admin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>Commercial</from-outcome>
+			<to-view-id>/commercial.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>Comptable</from-outcome>
+			<to-view-id>/comptable.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
