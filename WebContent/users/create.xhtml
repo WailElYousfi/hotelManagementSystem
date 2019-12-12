@@ -4,22 +4,51 @@
  
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui">
 <h:head>
 	<title>Liste des utilisateurs</title>
 </h:head>
 <h:body>
-	<h:form>
-		<h:panelGrid columns="2"  cellpadding="5" cellspacing="1">
-			<f:facet name="header">Ajouter un utilisateur</f:facet><br/>
+	<h:form id="myForm">
+		<h:panelGrid columns="2"  cellpadding="6" cellspacing="3">
+			<f:facet name="header">Ajouter un utilisateur</f:facet>
 						
-			<h:outputLabel>Last name</h:outputLabel>	
-			<h:inputText value="#{userBean.user.lastName}"/> 
+			<h:outputLabel>Nom</h:outputLabel>	
+			<h:inputText value="#{userBean.user.lastName}"/>
 			
+			<h:outputLabel>Prénom</h:outputLabel>	
+			<h:inputText value="#{userBean.user.firstName}"/>
+			
+			<h:outputLabel>Numéro de téléphone</h:outputLabel>	
+			<h:inputText value="#{userBean.user.phone}"/>
+
+			<h:outputLabel>Adresse électronique</h:outputLabel>	
+			<h:inputText value="#{userBean.user.email}"/>
+
+			<h:outputLabel>Mot de passe</h:outputLabel>	
+			<h:inputSecret value="#{userBean.user.password}"/>
+			
+			<h:outputLabel>Confirmation</h:outputLabel>	
+			<h:inputSecret value="#{userBean.confirmation}"/>
+
+			<h:outputLabel>Le role</h:outputLabel>	
+			<h:selectOneMenu value="#{userBean.user.role.roleId}">
+		    <f:selectItems value="#{roleBean.getAllRoles()}" 
+		    	var="r"
+		    	itemValue="#{r.roleId}"
+		    	itemLabel="#{r.roleName}" />
+			</h:selectOneMenu>
+		
 			<f:facet name="footer">
 				<h:commandButton value="Ajouter" action="#{userBean.addUser()}"/>
 			</f:facet>
-		</h:panelGrid>
-	</h:form>
+		</h:panelGrid><br></br>
+		
+		<h:message for="confirmationPassword" style="color:red;margin:8px;"/>
+	
+	</h:form><br></br>
+		<a href="index.xhtml">Retour</a>
+	
 </h:body>
 </html>

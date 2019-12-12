@@ -31,7 +31,7 @@ public class User implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="RoleId")
-	private Role Role;
+	private Role Role = new Role();
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "Commercial")
 	private List<Reservation> Reservations;
@@ -41,6 +41,7 @@ public class User implements Serializable {
 	
 	public User() {
 		super();
+		Role=new Role();
 	}
 
 	public Integer getUserId() {
