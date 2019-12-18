@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -35,35 +36,39 @@ public class RoleBean implements Serializable {
     private SessionFactory sessionfactory = new Configuration().configure().buildSessionFactory();
 	
 
-    private Role role;
+    private Role role = new Role();
+    
+   public RoleBean() {
+    	role = new Role();
+    }
     
     @PostConstruct
     public void init() {
         role = new Role();
     }
 	
-	public Role getUser() {
+	public Role getRole() {
 		return role;
 	}
 	
-	public void setUser(Role role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 		
 	public List<Role> getAllRoles(){
-		List<Role> roles=new ArrayList<Role>();
 		Session session = sessionfactory.openSession();
-		FacesContext context = FacesContext.getCurrentInstance();
-		try {
-			session.beginTransaction();
-			Query query = session.createQuery("from Role");
-			roles = query.getResultList();
-			session.getTransaction().commit();
-			session.close();
-		} catch(Exception e) {
-			System.out.println("Exception in getAllRoles: "+e.getMessage());
-		}
+		Query query = session.createQuery("from Role");
+		List<Role> roles=new ArrayList<Role>();
+		roles = query.getResultList();
+		session.close();
 		return roles;
+	}
+	
+	public Role getRoleById(Integer id) {	// La méthode est statique car elle est indépndante de l'objet Role
+		Session session = sessionfactory.openSession();
+		Role role = session.load(Role.class, id);
+		session.close();
+		return role;
 	}
 	
 

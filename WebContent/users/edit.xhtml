@@ -16,7 +16,7 @@
         <h:form id="form" class="form-horizontal">
             <div class="form-group">
                 <div class="col-sm-2"></div>
-                <h2 style="text-align: center" class="col-sm-4">Edit Student Record</h2>
+                <h2 style="text-align: center" class="col-sm-4">Modifier un utilisateur</h2>
             </div>
             <hr/>
             <div class="form-group">
@@ -37,12 +37,14 @@
                     <h:inputText id="email-id" value="#{userBean.user.email}" class="form-control"/>
                 </div>
             </div>
-            <div class="form-group">
+            
+            <!-- <div class="form-group">
                 <h:outputLabel for="password-id" class="control-label col-sm-2">Password:</h:outputLabel>
                 <div class="col-sm-4">
                     <h:inputSecret id="password-id" value="#{userBean.user.password}" class="form-control"/>
                 </div>
-            </div>
+            </div> -->
+            
             <div class="form-group">
                 <h:outputLabel for="phone-id" class="control-label col-sm-2">Phone:</h:outputLabel>
                 <div class="col-sm-4">

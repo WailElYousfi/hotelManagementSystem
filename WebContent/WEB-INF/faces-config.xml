@@ -33,6 +33,50 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/rooms/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/rooms/edit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/client/accueil.xhtml</from-view-id>
+		<navigation-case>
+				<from-outcome>ok</from-outcome>
+				<to-view-id>/client/results.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/client/results.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{roomBean.searchRooms()}</from-action>
+			<to-view-id>/client/results.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+<!-- 		<navigation-case>
+			<from-action>#{roomBean.showDetails(r)}</from-action>
+			<from-outcome>ok</from-outcome>
+			<to-view-id>/details.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>  -->
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/client/details.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{reservationBean.addReservation()}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/client/success.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
 
 </faces-config>
 

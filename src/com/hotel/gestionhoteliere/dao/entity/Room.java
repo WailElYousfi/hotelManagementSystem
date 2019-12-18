@@ -1,10 +1,12 @@
 package com.hotel.gestionhoteliere.dao.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,20 +25,25 @@ public class Room implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer RoomId;
 	@JoinColumn( unique = true)
-	private int RoomNumbere;
-	private int Floor;
+	private Integer RoomNumbere;
+	private Integer Floor;
 	private Long Surface;
+	private String Image;
+	private String Image2;
+	private String Image3;
+
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="TypeId")
-	private Type Type;
+	private Type Type = new Type();
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "Room")
-    private List<Reservation> Reservations;
+    private List<Reservation> Reservations = new ArrayList<Reservation>();
 	
 	
 	public Room() {
 		super();
+		Type = new Type();
 	}
 
 
@@ -50,22 +57,22 @@ public class Room implements Serializable {
 	}
 
 
-	public int getRoomNumbere() {
+	public Integer getRoomNumbere() {
 		return RoomNumbere;
 	}
 
 
-	public void setRoomNumbere(int roomNumbere) {
+	public void setRoomNumbere(Integer roomNumbere) {
 		RoomNumbere = roomNumbere;
 	}
 
 
-	public int getFloor() {
+	public Integer getFloor() {
 		return Floor;
 	}
 
 
-	public void setFloor(int floor) {
+	public void setFloor(Integer floor) {
 		Floor = floor;
 	}
 
@@ -98,6 +105,38 @@ public class Room implements Serializable {
 	public void setReservations(List<Reservation> reservations) {
 		Reservations = reservations;
 	}
+
+
+	public String getImage() {
+		return Image;
+	}
+
+
+	public void setImage(String image) {
+		Image = image;
+	}
+
+
+	public String getImage2() {
+		return Image2;
+	}
+
+
+	public void setImage2(String image2) {
+		Image2 = image2;
+	}
+
+
+	public String getImage3() {
+		return Image3;
+	}
+
+
+	public void setImage3(String image3) {
+		Image3 = image3;
+	}
+	
+	
 
 
 	

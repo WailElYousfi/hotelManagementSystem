@@ -12,6 +12,7 @@
         <property name="hibernate.show_sql">true</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		<property name="current_session_context_class">thread</property>
 
 
       <property name="hbm2ddl.auto">update</property>

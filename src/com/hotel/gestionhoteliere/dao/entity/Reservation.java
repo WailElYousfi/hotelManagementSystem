@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,25 +34,29 @@ public class Reservation implements Serializable {
 	private Date AcceptanceDate;
 	private String State;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="RoomId")
-	private Room Room;
+	private Room Room = new Room();
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="CommercialId")
-	private User Commercial;
+	private User Commercial = new User();
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="ClientId")
-	private Client Client;
+	private Client Client = new Client();
 
-	@OneToOne(mappedBy = "Reservation", cascade = CascadeType.ALL)
-	private Payment Payment;
-	
+	//@OneToOne(mappedBy = "Reservation", cascade = CascadeType.ALL)
+	//private Payment Payment = new Payment();
 	
 	
 	public Reservation() {
 		super();
+		Room=new Room();
+/*		Commercial=new User();
+		Client=new Client();
+		Payment=new Payment(); */
+
 	}
 
 

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+ 
+<h:head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+   <title>Modifier un utilisateur</title>
+    <style type="text/css">
+        .updateBtnStyle {
+            width: 80px !important;         
+        }
+    </style>
+</h:head>
+<h:body>
+        <h:form id="form" class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-2"></div>
+                <h2 style="text-align: center" class="col-sm-4">Modifier un utilisateur</h2>
+            </div>
+            <hr/>
+            <div class="form-group">
+                <h:outputLabel for="firstname-id" class="control-label col-sm-2">Numéro de chambre:</h:outputLabel>
+                <div class="col-sm-4">
+                    <h:inputText id="firstname-id" value="#{roomBean.room.roomNumbere}" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="lastname-id" class="control-label col-sm-2">Etage:</h:outputLabel>
+                <div class="col-sm-4">
+                    <h:inputText id="lastname-id" value="#{roomBean.room.floor}" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel for="email-id" class="control-label col-sm-2">Surface:</h:outputLabel>
+                <div class="col-sm-4">
+                    <h:inputText id="email-id" value="#{roomBean.room.surface}" class="form-control"/>
+                </div>
+            </div>
+            
+            <h:outputLabel>Le type</h:outputLabel>	
+			<h:selectOneMenu value="#{roomBean.room.type.typeId}">
+		    <f:selectItems value="#{typeBean.getAllTypes()}" 
+		    	var="t"
+		    	itemValue="#{t.typeId}"
+		    	itemLabel="#{t.typeName}" />
+			</h:selectOneMenu>
+
+            <div class="form-group">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-4">
+                    <h:commandButton value="Update" action="#{roomBean.updateRoomRecord()}" class="btn btn-primary updateBtnStyle" />
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</html>

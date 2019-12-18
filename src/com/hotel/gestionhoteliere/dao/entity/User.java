@@ -1,10 +1,12 @@
 package com.hotel.gestionhoteliere.dao.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,9 +14,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
 
 @Entity
 @Table(name="users")
+@Transactional
 public class User implements Serializable {
 	
     private static final long serialVersionUID = 1L;
@@ -29,19 +33,21 @@ public class User implements Serializable {
 	private String Phone;
 	private String Password;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="RoleId")
 	private Role Role = new Role();
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "Commercial")
-	private List<Reservation> Reservations;
+	private List<Reservation> Reservations = new ArrayList<Reservation>();
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "Comptable")
-    private List<Payment> Payments;
+    private List<Payment> Payments = new ArrayList<Payment>();
 	
 	public User() {
 		super();
 		Role=new Role();
+		//Reservations = new ArrayList<Reservation>();
+		//Payments = new ArrayList<Payment>();
 	}
 
 	public Integer getUserId() {

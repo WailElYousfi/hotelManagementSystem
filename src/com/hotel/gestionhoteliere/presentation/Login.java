@@ -53,15 +53,15 @@ public class Login implements Serializable {
 
 	//validate login
 	public String validateUsernamePassword() throws IOException {
-        FacesContext context = FacesContext.getCurrentInstance();
+		FacesContext context = FacesContext.getCurrentInstance();
         String pwd_crypted= Md5.getMD5(pwd);
 		boolean valid = LoginDAO.validate(user, pwd_crypted);
 		if (valid) {
 			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username", user);
-			UserBean currentUser = new UserBean();
-			//context.getExternalContext().redirect("admin.xhtml");
-			return currentUser.getRole(user).getRoleName(); // renvoi du nom d'utilisateur connecte
+			UserBean userBean = new UserBean();
+			User currentUser = userBean.getUserByEmail(user);
+			session.putValue("currentUser", currentUser); //Stocker l'objet user dans la session
+			return currentUser.getRole().getRoleName() ; // renvoi du nom d'utilisateur connecté
 		} else {
 			context.addMessage(null, new FacesMessage("Authentication Failed. Check username or password."));
 			return "login";

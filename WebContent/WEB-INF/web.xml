@@ -3,7 +3,7 @@
   <display-name>GestionHoteliere</display-name>
   
   <welcome-file-list>
-    <welcome-file>login.xhtml</welcome-file>
+    <welcome-file>client/accueil.xhtml</welcome-file>
   </welcome-file-list>
   
   <!-- Changer cette valeur à "Production" lors du déploiement final de l'application -->

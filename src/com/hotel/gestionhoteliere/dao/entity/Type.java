@@ -1,6 +1,7 @@
 package com.hotel.gestionhoteliere.dao.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -24,7 +25,7 @@ public class Type implements Serializable {
 	private String Description;
 	
 	@OneToMany(mappedBy="Type", cascade = CascadeType.ALL)
-	private List<Room> Rooms;
+	private List<Room> Rooms = new ArrayList<Room>();
 	
 	
 	public Type() {

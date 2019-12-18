@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
@@ -36,8 +37,9 @@ public class UserBean implements Serializable {
     private SessionFactory sessionfactory = new Configuration().configure().buildSessionFactory();
 
 
-    private User user;
+    private User user = new User();
     private String Confirmation;
+    
     
     @PostConstruct
     public void init() {
@@ -47,6 +49,7 @@ public class UserBean implements Serializable {
 	public User getUser() {
 		return user;
 	}
+	
 	public void setUser(User user) {
 		this.user = user;
 	}	
@@ -59,40 +62,32 @@ public class UserBean implements Serializable {
 		Confirmation = confirmation;
 	}
 	
-	public Role getRole(String email) {
-		User currentUser=null;
+	
+	
+	public User getUserById(Integer id) {
 		Session session = sessionfactory.openSession();
-	    FacesContext context = FacesContext.getCurrentInstance();
-		try {
-			session.beginTransaction();
-			Query query = session.createQuery("from User where Email= :email");
-			query.setString("email", email);
-			currentUser = (User) query.uniqueResult();
-			session.getTransaction().commit();
-			session.close();
-		} catch(Exception e) {
-			 System.out.println("Exception in getRole: "+e.getMessage());
-		}
-		return currentUser.getRole();
-
+		User user = session.load(User.class, id);
+		session.close();
+		return user;
+	}
+	
+	public User getUserByEmail(String email) {
+		Session session = sessionfactory.openSession();
+		Query query = session.createQuery("from User where Email= :email");
+		query.setString("email", email);
+		User currentUser = (User) query.uniqueResult();
+		session.close();
+		return currentUser;
 	}
 	
 	public List<User> getAllUsers(){
 		Session session = sessionfactory.openSession();
-	    FacesContext context = FacesContext.getCurrentInstance();
+		Query query = session.createQuery("from User");
 		List<User> users=new ArrayList<User>();
-		try {
-			session.beginTransaction();
-			Query query = session.createQuery("from User");
-			users = query.getResultList();
-			session.getTransaction().commit();
-			session.close();
-		} catch(Exception e) {
-			 System.out.println("Exception in getAllUsers: "+e.getMessage());
-		}
+		users = query.getResultList();
+		session.close();
 		return users;
 	}
-	
 	
 	public void addUser() {
 		Session session = sessionfactory.openSession();
@@ -102,12 +97,14 @@ public class UserBean implements Serializable {
 				session.beginTransaction();
 				String password_crypted = Md5.getMD5(user.getPassword()); 		// Crypter le mot de passe
 				user.setPassword(password_crypted);			// remplacer le mot de passe saisi par le mot de passe crypté
-				Role role = session.load(Role.class, user.getRole().getRoleId());		 // Récuperer le role qui a l'id envoyé par le formulaire
+				RoleBean roleBean = new RoleBean(); 
+				Role role = roleBean.getRoleById(user.getRole().getRoleId());		 // Récuperer le role qui a l'id envoyé par le formulaire
 				user.setRole(role);
 				session.save(user);
 				session.getTransaction().commit();
-				context.getExternalContext().redirect("index.xhtml");
 				session.close();
+				user = new User();
+				context.getExternalContext().redirect("index.xhtml");
 			} catch (Exception e) {
 				System.out.println("Exception in addUser method: " + e.getMessage());
 			}
@@ -115,8 +112,7 @@ public class UserBean implements Serializable {
 			context.addMessage("myForm:confirmationPassword", new FacesMessage("Password and confirm password don't match"));
 		}	
 	}
-	
-	
+		
 	public String editUserRecord(User user) {
 		this.user=user;
 		return "ok";
@@ -124,18 +120,20 @@ public class UserBean implements Serializable {
  
 	public void updateUserRecord() {
 		Session session = sessionfactory.openSession();
+	    FacesContext context = FacesContext.getCurrentInstance();
         try {
         	session.beginTransaction();
-        	String u = user.getPassword();
             session.merge(this.user);        
             session.getTransaction().commit();
         	session.close();
+        	user = new User();
+			context.getExternalContext().redirect("index.xhtml");
         } catch(Exception e){
             System.out.println("Exception in updateUserRecord: " + e.getMessage());
         }
     }
 	
-	public void deleteStudentRecord(User user) {
+	public void deleteUserRecord(User user) {
 		Session session = sessionfactory.openSession();
         try {
         	session.beginTransaction();
@@ -143,7 +141,7 @@ public class UserBean implements Serializable {
         	session.getTransaction().commit();
         	session.close();
         } catch(Exception e){
-            System.out.println("Exception in updateUserRecord: " + e.getMessage());
+            System.out.println("Exception in deleteUserRecord: " + e.getMessage());
         }
 	}
 

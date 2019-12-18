@@ -87,6 +87,7 @@ public class Seeder {
 		r.setFloor(faker.number().numberBetween(1, 5));
 		r.setSurface((long)faker.number().randomDouble(4, 20, 60));
 		r.setType(types.get(rand.nextInt(types.size())));
+		r.setImage(Integer.toString(faker.number().numberBetween(1, 10))+".jpg");
 		rooms.add(r);
 		session.save(r);
 	  }
@@ -153,14 +154,17 @@ public class Seeder {
 ////////////////////////////////////////////////////////////////////////////////////////
 
 	Date currentDate = new Date();
+	
 	Calendar c = Calendar.getInstance();
 	c.setTime(currentDate);
 	c.add(Calendar.DATE, 1);// after 1 day
 	c.add(Calendar.HOUR, 3);// after 3 hours
+	
 	Calendar c2 = Calendar.getInstance();
 	c2.setTime(currentDate);
 	c2.add(Calendar.DATE, 3);// after 2 days
 	Date date2=new SimpleDateFormat("dd-MM-yyyy").parse(Integer.toString(c2.get(Calendar.DAY_OF_MONTH))+"-"+Integer.toString(c2.get(Calendar.MONTH))+"-"+Integer.toString(c2.get(Calendar.YEAR)));  
+	
 	Calendar c3 = Calendar.getInstance();
 	c3.setTime(currentDate);
 	c3.add(Calendar.DATE, 6);// after 6 days
