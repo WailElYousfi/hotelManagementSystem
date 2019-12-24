@@ -1,25 +1,43 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-	<title>login</title>
-</h:head>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	>
+
 <h:body>
+<ui:composition template="resources/commonLayout2.xhtml">
+ 
+<ui:define name="title">
+	Login
+</ui:define>
+
+<ui:define name="log"><br/><br/>
 	<h:form>
-		<h3>JSF Login Logout</h3>
-		<h:outputText value="Username" />
-		<h:inputText id="username" value="#{login.user}"></h:inputText>
-		<br></br><br></br>
-		
-		<h:outputText value="Password" />
-		<h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
-		<br></br><br></br>
+    	<div class="form-group">
+             <label for="username"><font size="4px" color="#f9ab30">E-mail</font></label>
+			<h:inputText styleClass="form-control" id="username" value="#{login.user}">
+			<f:passThroughAttribute name="placeHolder" value="E-mail"/>
+			</h:inputText>
+		</div>
+
+        <div class="form-group">
+             <label for="password"><font size="4px" color="#f9ab30">Mot de passe</font></label>
+			<h:inputSecret styleClass=" form-control" id="password" value="#{login.pwd}">
+			<f:passThroughAttribute name="placeHolder" value="Mot de passe"/>
+			</h:inputSecret>
+			
+		</div>
 		    <h:messages globalOnly="true" style="color:red;margin:8px;" />
 		    <br></br>
-		
-		<h:commandButton action="#{login.validateUsernamePassword}"
-			value="Login"></h:commandButton>
+		<div class="form-group">
+			<h:commandButton styleClass="btn btn-primary py-3 px-5" action="#{login.validateUsernamePassword}" value="Login"></h:commandButton>
+		</div>
 	</h:form>
+</ui:define>
+	
+</ui:composition>
+
 </h:body>
 </html>

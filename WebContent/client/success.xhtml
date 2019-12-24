@@ -2,18 +2,43 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Reservation terminee !</title>
-</h:head>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	>
+
 <h:body>
-	<h2>Votre réservation est faite avec succès !</h2>
-	<p>Elle commence le <font color="red">#{roomBean.debut}</font> jusqu'au <font color="red">#{roomBean.fin}</font></p>
-	<p><font color="green">Pour plus d'information sur la réservation, veuillez consulter votre boîte de réception</font></p>
-	<a href="accueil.xhtml">Retour à la page d'accueil</a>
-	
-	<!-- Jusqu'a maintenant, on a pas encore implementé la fonction de l'envoi d'email !!!!!!!!!!!!!!!!!!!!!!!!!!!!   -->
-	
+
+<ui:composition template="commonLayout.xhtml">
+ 
+<ui:define name="title">
+	L'envoi de demande
+</ui:define>
+
+
+<ui:define name="content">
+<section class="ftco-section ftco-no-pt">
+    	<div class="container bg-light p-5">
+    		<div class="row justify-content-center pb-4">
+          		<div class="col-md-12 heading-section text-center ftco-animate">
+            		<h2 class="mb-4"><font color="#f9ab30">Votre demande de réservation est envoyée avec succès !</font></h2>
+          		</div>
+        	</div>
+        	<div class="row">
+        		<div class="col-md-2"></div>
+        		<div class="col-md-8 text-center">
+        		    <p>La chambre sera disponible de: <font color="red">#{roomBean.debut}</font><br/>jusqu'au: <font color="red">#{roomBean.fin}</font></p><br/>      
+					<p>Un email de confirmation vous sera envoyé à votre boite mail une fois la réservation confirmée par le service commercial</p><br/>
+					<a href="accueil.xhtml"><h:inputText value="Retour à la page d'accueil" styleClass="btn btn-primary py-3 px-5"/></a>					
+        		</div>
+        	</div>
+        	
+        </div>
+</section>
+        
+</ui:define>
+
+</ui:composition>
+
 </h:body>
 </html>

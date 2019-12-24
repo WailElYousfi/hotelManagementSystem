@@ -1,45 +1,79 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
-  
-    <!-- DatePicker JavaScript & CSS -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js" />
-    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" />
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
- 
-     <h:outputScript library="js" name="formatDatePicker.js" />
-     <h:outputStylesheet library="css" name="bootstrap.min.css" />
-      
-    <title>Accueil</title>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      >
 
-</h:head>
 <h:body>
-	<h:form>
-		<h:panelGrid columns="2"  cellpadding="6" cellspacing="3">
-			<f:facet name="header">Selectionnez les dates:</f:facet>
-			
-			<h:outputLabel>Date de début:</h:outputLabel>
-         		<h:inputText value="#{roomBean.debut}" styleClass="datepicker" >
-         			<f:passThroughAttribute name="placeHolder" value="yyyy-MM-dd"/>
-					<f:convertDateTime pattern="yyyy-MM-dd"/>
-         		</h:inputText>
-            
-			<h:outputLabel>Date de fin:</h:outputLabel>
-         		<h:inputText value="#{roomBean.fin}" styleClass="datepicker" >
-         		    <f:passThroughAttribute name="placeHolder" value="yyyy-MM-dd"/>
-					<f:convertDateTime pattern="yyyy-MM-dd"/>
-				</h:inputText>
-						
-			<f:facet name="footer">
-				<h:commandButton value="Rechercher" action="#{roomBean.searchRooms()}"/>
-			</f:facet>
-		</h:panelGrid><br></br>
-			
-	</h:form>
+    	
+<ui:composition template="commonLayout.xhtml">
+ 
+<ui:define name="title">
+	Accueil
+</ui:define>
+    	
+    	
+<ui:define name="search">
+			<section class="ftco-section ftco-no-pb ftco-no-pt">
+    	<div class="container">
+	    	<div class="row">
+					<div class="col-md-12">
+						<div class="search-wrap-1 ftco-animate p-4">
+							<h:form styleClass="search-property-1">
+		        		<div class="row">
+		        			<div class="col-lg align-items-end">
+		        				<div class="form-group">
+		        					<label for="#">Date de dÃ©but</label>
+		          				<div class="form-field">
+		          					<div class="icon"><span class="ion-ios-search"></span></div>
+		          					<h:inputText value="#{roomBean.debut}" styleClass="checkin_date form-control" >
+         								<f:passThroughAttribute name="placeHolder" value="yyyy-MM-dd"/>
+										<f:convertDateTime pattern="MM/dd/yyyy"/>
+         							</h:inputText>
+				              </div>
+			              </div>
+		        			</div>
+		        			<div class="col-lg align-items-end">
+		        				<div class="form-group">
+		        					<label for="#">Date de fin</label>
+		        					<div class="form-field">
+		          					<div class="icon"><span class="ion-ios-calendar"></span></div>
+
+									<h:inputText value="#{roomBean.fin}" styleClass="checkout_date form-control" >
+					         		    <f:passThroughAttribute name="placeHolder" value="yyyy-MM-dd"/>
+										<f:convertDateTime pattern="MM/dd/yyyy"/>
+									</h:inputText>
+				              </div>
+			              </div>
+		        			</div>
+
+		        			<div class="col-lg align-self-end">
+		        				<div class="form-group">
+		        					<div class="form-field">
+		        					<h:commandButton styleClass="form-control btn btn-primary" value="Rechercher" action="#{roomBean.searchRooms()}"/>
+	  				            </div>
+			              </div>
+		        			</div>
+		        		</div>
+		        	</h:form>
+		        </div>
+					</div>
+	    	</div>
+	    </div>
+    </section>
+</ui:define>
+    		
+<ui:define name="content">
+
+</ui:define>
+    		
+    		
+</ui:composition>
+
+    	
 </h:body>
 </html>

@@ -3,51 +3,106 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Reserver une chambre</title>
-</h:head>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+	>
 <h:body>
 
+<ui:composition template="commonLayout.xhtml">
+ 
+<ui:define name="title">
+	Réserver une chambre
+</ui:define>
+
+
+<ui:define name="content">
 <h:form>
-		<h:panelGrid columns="2"  cellpadding="6" cellspacing="3">
-			<f:facet name="header">Reserver une chambre</f:facet>
-			
-			<h:outputLabel>Num de chambre : </h:outputLabel>
-			<h:outputText value="${reservationBean.reservation.room.roomNumbere}"></h:outputText>
+<section class="ftco-counter img" id="section-counter">
+    	<div class="container"><br/><br/>
+    		<div class="row d-flex">
+    			<div class="col-md-6 d-flex">
+    				<div class="img d-flex align-self-stretch" style="background-image:url(../resources/images/${reservationBean.reservation.room.image});"></div>
+    			</div>
+    			<div class="col-md-6 pl-md-5 py-5">
+    				<div class="row justify-content-start pb-3">
+		          <div class="col-md-12 heading-section ftco-animate">
+		            <h2 class="mb-4">Chambre n° ${reservationBean.reservation.room.roomNumbere}</h2>
+		            <p>${reservationBean.reservation.room.type.typeName} : ${reservationBean.reservation.room.type.description}</p>
+		            <p>La surface : ${reservationBean.reservation.room.surface}</p>
+		            <p>L'étage : ${reservationBean.reservation.room.floor}</p>
+		          </div>
+		        </div>
+		    		<div class="row">
+		          <div class="col-md-4 justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center mb-4">
+		              <div class="text">
+		                <strong class="number" data-number="${reservationBean.reservation.room.reservations.size()}">0</strong>
+		                <span>Réservations</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-4 justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center mb-4">
+		              <div class="text">
+		                <strong class="number" data-number="3">0</strong>
+		                <span>Happy Tourist</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-4 justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center mb-4">
+		              <div class="text">
+		                <strong class="number" data-number="4">0</strong>
+		                <span>Place Explored</span>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+        </div>
+    	</div>
+    </section><br/><br/>
+    
+<div class="container">
+  <div class="row">
+          <div class="col-md-3 order-md-last d-flex"></div>
+          <div class="col-md-9 order-md-last d-flex">
+            <div class="bg-light bg-light p-5">
+              <div class="form-group">
+		            <h3 class="mb-4 text-center">Remplir la formulaire</h3><br/>
+              		 <label for="nom">Nom</label>
+					<h:inputText value="#{reservationBean.reservation.client.lastName}" styleClass="form-control" id="nom"/>
+                  </div>
+                  <div class="form-group">
+              		 <label for="prenom">Prénom</label>               
+					<h:inputText value="#{reservationBean.reservation.client.firstName}" styleClass="form-control" id="prenom"/>
+                  </div>
+                  <div class="form-group">
+              		 <label for="tele">Num de téléphone</label>                  
+					<h:inputText value="#{reservationBean.reservation.client.phone}" styleClass="form-control" id="tele"/>
+                  </div>
+				  <div class="form-group">
+              		 <label for="email">Adresse électronique</label>				  
+					<h:inputText value="#{reservationBean.reservation.client.email}" styleClass="form-control" id="email"/>
+                  </div>				  
+                  <div class="form-group">
+              		 <label for="cin">CIN</label>                  
+					<h:inputText value="#{reservationBean.reservation.client.cin}" styleClass="form-control" id="cin"/>			
+                  </div>
+                  <div class="form-group ">
+                  	<h:commandButton value="Réserver" action="#{reservationBean.addReservation()}" styleClass="btn btn-primary py-3 px-5"/>       
+                  </div>
+            </div>
+          
+          </div>
+	</div>
+</div><br/>
+    
+   
 
-			<h:outputLabel>Etage : </h:outputLabel>
-			<h:outputText value="${reservationBean.reservation.room.floor}"></h:outputText>
-			
-			<h:outputLabel>Surface : </h:outputLabel>
-			<h:outputText value="${reservationBean.reservation.room.surface}"></h:outputText>
-			
-			<h:outputLabel>Image : </h:outputLabel>
-			<h:graphicImage library="images" width="180px" height="100px" name="#{reservationBean.reservation.room.image}"/>
-						
-			<h:outputLabel>Nom</h:outputLabel>	
-			<h:inputText value="#{reservationBean.reservation.client.lastName}"/>
-			
-			<h:outputLabel>Prénom</h:outputLabel>	
-			<h:inputText value="#{reservationBean.reservation.client.firstName}"/>
-			
-			<h:outputLabel>Numéro de téléphone</h:outputLabel>	
-			<h:inputText value="#{reservationBean.reservation.client.phone}"/>
+</h:form>
+</ui:define>
 
-			<h:outputLabel>Adresse électronique</h:outputLabel>	
-			<h:inputText value="#{reservationBean.reservation.client.email}"/>
-
-			<h:outputLabel>CIN</h:outputLabel>	
-			<h:inputText value="#{reservationBean.reservation.client.cin}"/>			
-			
-		
-			<f:facet name="footer">
-				<h:commandButton value="Ajouter" action="#{reservationBean.addReservation()}"/>
-			</f:facet>
-		</h:panelGrid><br></br>
-			
-	</h:form><br></br>
-
+</ui:composition>
 </h:body>
 </html>

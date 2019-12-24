@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Réservations confirmées</title>
+</h:head>
+<h:body>
+	<h2>Liste des réservations confirmées</h2>
+	<h:form>
+		<h:dataTable var="r" value="#{reservationBean.getAllReservations('Acceptée')}" border="1">
+			<h:column>
+				<f:facet name="header">Id</f:facet>
+				<h:outputText value="${r.reservationId}"></h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">De</f:facet>
+				<h:outputText value="${r.startDate} "></h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Jusqu'à</f:facet>
+				<h:outputText value="${r.endDate}"></h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Date de réservation</f:facet>
+				<h:outputText value="${r.reservationDate}"></h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Statut</f:facet>
+				<h:outputText value="${r.state}"></h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Chambre n°</f:facet>
+				<h:outputText value="${r.room.roomNumbere}"></h:outputText>
+			</h:column>
+		
+			<h:column>
+				<f:facet name="header">Client</f:facet>
+				<h:outputText value="${r.client.firstName} ${r.client.lastName}"></h:outputText>
+			</h:column>
+							
+			<h:column>
+				<f:facet name="header">Commercial</f:facet>
+				<h:outputText value="${r.commercial.firstName} ${r.commercial.lastName}"></h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Prix / nuit</f:facet>
+				<h:outputText value="${r.pricePerNight}"></h:outputText>
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Prix total</f:facet>
+				<h:outputText value="${reservationBean.getTotalPrice(r)}"></h:outputText>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Prix négocié</f:facet>
+				<h:selectOneMenu value="#{paymentBean.method}">
+   				<f:selectItem itemValue="Carte bancaire" itemLabel="Carte bancaire" />
+   				<f:selectItem itemValue="Chèque" itemLabel="Chèque" />
+   				<f:selectItem itemValue="En espèce" itemLabel="En espèce" />
+			</h:selectOneMenu>
+			</h:column>
+						
+			<h:column>
+                <f:facet name="header"></f:facet>
+                <h:commandButton action="#{paymentBean.payReservation(r)}" value="Payer" />
+            </h:column>     
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>
