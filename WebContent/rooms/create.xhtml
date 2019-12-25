@@ -1,46 +1,77 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <title>Ajouter une chambre</title>
-    </h:head>
-    <h:body>    
-        <h:form  enctype="multipart/form-data">
-		<h:panelGrid columns="2"  cellpadding="6" cellspacing="3">
-			<f:facet name="header">Ajouter une chambre</f:facet>
-						
-			<h:outputLabel>Numéro de chambre</h:outputLabel>	
-			<h:inputText value="#{roomBean.room.roomNumbere}"/>
-			
-			<h:outputLabel>Etage</h:outputLabel>	
-			<h:inputText value="#{roomBean.room.floor}"/>
-			
-			<h:outputLabel>Surface</h:outputLabel>	
-			<h:inputText value="#{roomBean.room.surface}"/>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-			<h:outputLabel>Le type</h:outputLabel>	
-			<h:selectOneMenu value="#{roomBean.room.type.typeId}">
+<h:body>
+
+    	<ui:composition template="../resources/layout.xhtml">
+
+ 
+<ui:define name="title">
+	Ajouter une chambre
+</ui:define>
+
+<ui:define name="content">
+        <h:form  enctype="multipart/form-data">
+        
+        <div class="box box-danger">
+        <div class="box-header with-border">
+        Ajouter une chambre
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <div class="box-body">
+            <div class="form-group">
+            	<h:outputLabel>Num de chambre</h:outputLabel>	
+				<h:inputText styleClass="form-control" value="#{roomBean.room.roomNumbere}"/>
+            </div>
+            <div class="form-group">
+            	<h:outputLabel>Etage</h:outputLabel>	
+				<h:inputText styleClass="form-control" value="#{roomBean.room.floor}"/>
+            </div>
+            <div class="form-group">
+            	<h:outputLabel>Surface</h:outputLabel>	
+				<h:inputText styleClass="form-control" value="#{roomBean.room.surface}"/>
+            </div>
+            <div class="form-group">
+            <h:outputLabel>Type de chambre</h:outputLabel>	
+			<h:selectOneMenu styleClass="form-control" value="#{roomBean.room.type.typeId}">
 		    <f:selectItems value="#{typeBean.getAllTypes()}" 
 		    	var="t"
 		    	itemValue="#{t.typeId}"
 		    	itemLabel="#{t.typeName}" />
 			</h:selectOneMenu>
-			
-		
+            </div>
+            <div class="form-group"><br/>
+            <h:outputLabel>Image 1</h:outputLabel>	
 			<h:inputFile value="#{roomBean.file1}" /><br/>
-            <h:inputFile value="#{roomBean.file2}" /><br/>
-            <h:inputFile value="#{roomBean.file3}" /><br/><br/>
-		
-			<f:facet name="footer">
-				<h:commandButton value="Ajouter" action="#{roomBean.addRoom()}"/>
-			</f:facet>
-		</h:panelGrid><br></br>
+            </div>
+            <div class="form-group">
+            <h:outputLabel>Image 2</h:outputLabel>	
+			<h:inputFile  value="#{roomBean.file2}" /><br/>
+            </div>
+            <div class="form-group">
+            <h:outputLabel>Image 3</h:outputLabel>	
+			<h:inputFile value="#{roomBean.file3}" /><br/>
+            </div><br></br>                                      
+            <div class="form-group">           			
+				<h:commandButton styleClass="btn btn-primary" value="Ajouter" action="#{roomBean.addRoom()}"/>
+			</div>
+			                                        
+            
+        </div>
+       </div>
+       
+       
 			
-	</h:form><br></br>
-		<a href="index.xhtml">Retour</a>
-
+	</h:form>
+</ui:define>
+</ui:composition>
     </h:body>
 </html>
 

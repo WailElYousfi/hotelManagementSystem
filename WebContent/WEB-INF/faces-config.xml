@@ -14,12 +14,12 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>Commercial</from-outcome>
-			<to-view-id>/commercial.xhtml</to-view-id>
+			<to-view-id>/commercial/index.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>Comptable</from-outcome>
-			<to-view-id>/comptable.xhtml</to-view-id>
+			<to-view-id>/comptable/index.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

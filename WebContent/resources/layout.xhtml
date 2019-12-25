@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	  >
+<h:head>
+<title>
+		<ui:insert name="title" >
+    	<!-- ******************************************** TITLE SECTION ******************************************* -->
+		</ui:insert>
+</title>
+
+<link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/resources/template2/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/resources/template2/bower_components/font-awesome/css/font-awesome.min.css"/>
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/resources/template2/bower_components/Ionicons/css/ionicons.min.css"/>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/resources/template2/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css"/>
+    <!-- Morris charts -->
+    <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/resources/template2/bower_components/morris.js/morris.css"/>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/resources/template2/dist/css/AdminLTE.min.css"/>
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="${facesContext.externalContext.requestContextPath}/resources/template2/dist/css/skins/_all-skins.min.css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"/>  
+
+</h:head>
+<h:body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+    <a href="index2.html" class="logo">
+      <span class="logo-mini"><b>H</b>WM</span>
+      <span class="logo-lg"><b>HOTEL</b>WAILMOAD</span>
+    </a>
+    <nav class="navbar navbar-static-top">
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <!-- Messages: style can be found in dropdown.less-->
+
+
+          <!-- Tasks: style can be found in dropdown.less -->
+
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="${facesContext.externalContext.requestContextPath}/resources/template2/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
+              <span class="hidden-xs">#{currentUser.getFirstName()} #{currentUser.getLastName()}</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <img src="${facesContext.externalContext.requestContextPath}/resources/template2/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+
+
+              </li>
+              <!-- Menu Body -->
+
+              <!-- Menu Footer-->
+              <li class="user-footer">
+
+                <div class="pull-right">
+
+<h:form>
+		<h:commandLink action="#{login.logout}" styleClass="btn btn-default btn-flat" value="Deconnexion"></h:commandLink>
+	</h:form>
+	
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Control Sidebar Toggle Button -->
+
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- Sidebar user panel -->
+      <div class="user-panel">
+        <div class="pull-left image">
+          <img src="${facesContext.externalContext.requestContextPath}/resources/template2/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+        </div>
+        <div class="pull-left info">
+          <p>#{currentUser.getFirstName()} #{currentUser.getLastName()}</p>
+<a href ="http://localhost:8000/GestionHoteliere/admin.xhtml">Accueil</a>   
+     </div>
+      </div>
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">MENU</li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Utilisateurs</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="http://localhost:8000/GestionHoteliere/users/index.xhtml" class="nav-link">Liste des utilisateurs</a></li>
+            <li><a href="http://localhost:8000/GestionHoteliere/users/create.xhtml" class="nav-link">Modifier utilisateur</a></li>
+          </ul>
+        </li>
+        <li >
+<a href="http://localhost:8000/GestionHoteliere/rooms/index.xhtml" class="nav-link">Liste des chambres</a>
+          
+        </li>
+        
+        <li >
+<a href="http://localhost:8000/GestionHoteliere/users/create.xhtml" class="nav-link">Ajouter une chambre</a>
+          
+        </li>
+        
+      </ul>
+    </section>
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <!-- Main content -->
+    <section class="content">
+    	<ui:insert name="content" >
+    	<!-- ******************************************** TITLE SECTION ******************************************* -->
+		</ui:insert>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+    </div>
+    <strong>Copyright &copy; 2019 Hotel WAILMOAD.</strong> All rights
+    reserved.
+  </footer>
+
+  <div class="control-sidebar-bg"></div>
+</div>
+
+    <script src="${facesContext.externalContext.requestContextPath}/resources/template2/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="${facesContext.externalContext.requestContextPath}/resources/template2/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- DataTables -->
+    <script src="${facesContext.externalContext.requestContextPath}/resources/template2/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="${facesContext.externalContext.requestContextPath}/resources/template2/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="${facesContext.externalContext.requestContextPath}/resources/template2/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="${facesContext.externalContext.requestContextPath}/resources/template2/bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="${facesContext.externalContext.requestContextPath}/resources/template2/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="${facesContext.externalContext.requestContextPath}/resources/template2/dist/js/demo.js"></script>
+    
+    <script src="${facesContext.externalContext.requestContextPath}/resources/template2/bower_components/raphael/raphael.min.js"></script>
+<script src="${facesContext.externalContext.requestContextPath}/resources/template2/bower_components/morris.js/morris.min.js"></script>
+    <!-- page script -->
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example11').DataTable()
+            $('#example111').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
+    <script>
+  $(function () {
+    "use strict";
+
+    // Line CHART
+   
+
+
+    //DONUT CHART
+    var donut = new Morris.Donut({
+      element: 'sales-chart',
+      resize: true,
+      colors: ["#3c8dbc", "#f56954", "#00a65a"],
+      data: [
+        {label: "Chèque", value: #{paymentBean.methodch()}},
+        {label: "En espèce", value: #{paymentBean.methoden()}},
+        {label: "Carte bancaire", value: #{paymentBean.methodca()}}
+      ],
+      hideHover: 'auto'
+    });
+    
+  });
+</script>
+    <!-- 
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>  -->
+</h:body>
+</html>
+	    

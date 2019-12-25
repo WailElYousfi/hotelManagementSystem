@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reservationsPerRoom" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0f120aca-18d6-4821-86d3-70968477e374">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<queryString language="SQL">
+		<![CDATA[select distinct rooms.roomNumber  , count(ReservationId) as countReservation
+ from reservations,rooms 
+ where reservations.roomId=rooms.roomId 
+ group by reservations.roomId]]>
+	</queryString>
+	<field name="roomNumber" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="roomNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rooms"/>
+	</field>
+	<field name="countReservation" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="countReservation"/>
+	</field>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="800" height="50" uuid="f554e48f-4ec5-4bae-9e0a-d589cac74168"/>
+				<textElement textAlignment="Center">
+					<font size="29"/>
+				</textElement>
+				<text><![CDATA[Nombre de réservations par chambre]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="336" splitType="Stretch">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="10" width="800" height="310" uuid="bca4103c-7a5a-4fdc-9acf-d76855417a32"/>
+					<chartTitle>
+						<font size="14"/>
+						<titleExpression><![CDATA["Ce graphe représente le nombre de réservations de chaque chambre"]]></titleExpression>
+					</chartTitle>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset resetType="Report"/>
+					<categorySeries>
+						<seriesExpression><![CDATA["Le nombre de réservations par chambre"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{roomNumber}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{countReservation}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#485FA5"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisLabelExpression><![CDATA["Numéro de la chambre"]]></categoryAxisLabelExpression>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000">
+							<labelFont>
+								<font isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["Nombre de réservations"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000">
+							<labelFont>
+								<font isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listPaymentsjrxml" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fed3592c-680a-4b00-8d62-02d214d024df">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="658a09db-44b5-4120-9745-a160e0bbc112">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+		<queryString language="SQL">
+			<![CDATA[select * 
+from  reservations re , payments p, users u
+where re.reservationid=p.reservationId
+and p.comptableId=u.userId]]>
+		</queryString>
+		<field name="PaymentId" class="java.lang.Integer">
+			<property name="com.jaspersoft.studio.field.label" value="PaymentId"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+		</field>
+		<field name="PaymentDate" class="java.sql.Timestamp">
+			<property name="com.jaspersoft.studio.field.label" value="PaymentDate"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+		</field>
+		<field name="AmountPaid" class="java.lang.Float">
+			<property name="com.jaspersoft.studio.field.label" value="AmountPaid"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+		</field>
+		<field name="TransactionNumber" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="TransactionNumber"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+		</field>
+		<field name="MethodOfPayment" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="MethodOfPayment"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+		</field>
+		<field name="FirstName" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="FirstName"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+		</field>
+		<field name="LastName" class="java.lang.String">
+			<property name="com.jaspersoft.studio.field.label" value="LastName"/>
+			<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+		</field>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[select * 
+from  reservations re , payments p, users u
+where re.reservationid=p.reservationId
+and p.comptableId=u.userId]]>
+	</queryString>
+	<field name="ReservationId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ReservationId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="AcceptanceDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="AcceptanceDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="EndDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="EndDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="PricePerNight" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="PricePerNight"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="ReservationDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="ReservationDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="StartDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="StartDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="State" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="State"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="ClientId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ClientId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="CommercialId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="CommercialId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="RoomId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="RoomId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="PaymentId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="PaymentId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="AmountPaid" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="AmountPaid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="MethodOfPayment" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MethodOfPayment"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="PaymentDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="PaymentDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="TransactionNumber" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="TransactionNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="ComptableId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ComptableId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="COLUMN_17" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ReservationId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="UserId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="UserId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="Email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="FirstName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="FirstName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="LastName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="LastName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="Password" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Password"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="Phone" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Phone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="RoleId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="RoleId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="39" width="555" height="30" uuid="1c8576d0-675d-4eaf-80df-06acf98ea203"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Liste des paiements]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="211" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="11" width="560" height="200" uuid="bbff8896-d765-4384-9258-f1ff15b34e2d">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset1" uuid="ec75bab1-b922-44c5-b5f5-69f988c5ead0">
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="60" uuid="ddafae67-8b23-4da1-ab98-306e4ac63fb8">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Colonne1"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="30" uuid="bfa6849d-07f1-4fb4-b594-fb9104cd4f16"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[PaymentId]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="60" height="30" uuid="b661c278-a8a6-4952-8ee6-b962e5b8f178"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{PaymentId}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="e1c85d33-8e3b-4fb1-85f2-d21f298b630f">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Colonne2"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="2b7f5b86-39b9-4940-b2de-5836ff87489e"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Date de paiement]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="d7752d16-0bf9-4023-b92b-df8b8748ad7e"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{PaymentDate}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="4880e763-cc2a-4edb-b7cd-96e1b1140d90">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Colonne3"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="6d4d4ea4-4813-49d1-a079-dd2054089f49"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Montant HT]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="81d5b8a0-42ec-4875-bf9f-55180346120a"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{AmountPaid} + " MAD"]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="14279216-c454-41f0-80d4-b048a94592dc">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Colonne4"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="43e5f879-ca2d-4d82-8476-91c0f2d6acb6"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Numéro de transaction]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="5f033bec-59b0-4a03-934f-98bc0b4b3895"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{TransactionNumber}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="d3439982-688c-4684-bf44-034f2862af43">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Colonne5"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="55dc2a5a-dd77-4554-a923-b9662cf8048d"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Méthode de paiement]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="0cd36270-c0e5-44fd-8bbe-4439e1c1a391"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{MethodOfPayment}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="630114d7-88f9-4d04-8056-2b5d2cfe4315">
+						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Colonne6"/>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="100" height="30" uuid="d3364f8b-05bc-4865-8998-5520c02834db"/>
+								<textElement textAlignment="Center">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Comptable qui a établit la facture]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="100" height="30" uuid="f754f8f0-461f-48a7-84df-ea4f1e753859"/>
+								<textElement textAlignment="Center"/>
+								<textFieldExpression><![CDATA[$F{FirstName}+" "+$F{LastName}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

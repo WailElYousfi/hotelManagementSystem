@@ -66,8 +66,62 @@ public class PaymentBean implements Serializable {
 		this.method = method;
 	}
 	
-	
+    public Double count() {
+    	Session session = sessionfactory.openSession();
+		Query query = session.createQuery("Select sum(c.AmountPaid) from Payment c");
+		Double nbr = (Double) query.uniqueResult();
+		session.close();
+		return nbr;
+    }
+    
+    public Long methodch() {
+    	Session session = sessionfactory.openSession();
+		Query query = session.createQuery("Select count(c) from Payment c where c.MethodOfPayment='Chèque'");
+		Long nbr = (Long) query.uniqueResult();
+		session.close();
+		return nbr;
+    }
 
+    public Long methodca() {
+    	Session session = sessionfactory.openSession();
+		Query query = session.createQuery("Select count(c) from Payment c where c.MethodOfPayment='Carte bancaire'");
+		Long nbr = (Long) query.uniqueResult();
+		session.close();
+		return nbr;
+    }
+    
+    public Long methoden() {
+    	Session session = sessionfactory.openSession();
+		Query query = session.createQuery("Select count(c) from Payment c where c.MethodOfPayment='En espèce'");
+		Long nbr = (Long) query.uniqueResult();
+		session.close();
+		return nbr;
+    }
+    
+    public Double profits10() {
+    	Session session = sessionfactory.openSession();
+		Query query = session.createQuery("Select sum(c.AmountPaid) from Payment c where c.PaymentDate='2019-10-09 19:56:57'");
+		Double nbr = (Double) query.uniqueResult();
+		session.close();
+		return nbr;
+    }
+    
+    public Double profits11() {
+    	Session session = sessionfactory.openSession();
+		Query query = session.createQuery("Select sum(c.AmountPaid) from Payment c where c.PaymentDate='2019-11-13 00:00:00'");
+		Double nbr = (Double) query.uniqueResult();
+		session.close();
+		return nbr;
+    }
+    
+    public Double profits12() {
+    	Session session = sessionfactory.openSession();
+		Query query = session.createQuery("Select sum(c.AmountPaid) from Payment c where c.PaymentDate='2019-12-20 15:54:48'");
+		Double nbr = (Double) query.uniqueResult();
+		session.close();
+		return nbr;
+    }
+    
 	public List<Payment> getAllPayments(){
 		Session session = sessionfactory.openSession();
 		Query query = session.createQuery("from Payment");
@@ -83,15 +137,14 @@ public class PaymentBean implements Serializable {
 			session.beginTransaction();
 			session.save(this.payment);
 			session.getTransaction().commit();
-			payment = new Payment();
-			method = null;
+
 			session.close();
 		} catch (Exception e) {
 			System.out.println("Exception in addPayment method: " + e.getMessage());
 		}
 	}
 	
-	public String payReservation(Reservation r) {
+	public void payReservation(Reservation r) {
 		
 		String dateToString = new SimpleDateFormat("yyyyMMdd").format(new Date());
 		ReservationBean resBean = new ReservationBean();
@@ -105,7 +158,8 @@ public class PaymentBean implements Serializable {
 		this.payment.setPaymentDate(new Date());
 		this.payment.setTransactionNumber("P" + dateToString + r.getReservationId());
 		addPayment();
-		return "payment";
+		payment = new Payment();
+		method=null;
 	}
 	
 	

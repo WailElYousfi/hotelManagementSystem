@@ -1,18 +1,105 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-	<title>Facelet Title</title>
-</h:head>
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
 <h:body>
-	<h:form>
-		<p>Bonjour admin : #{currentUser.getFirstName()} #{currentUser.getLastName()}</p>      <!-- Ces information sont stockées dans la session -->
-		<h:commandLink action="#{login.logout}" value="Logout"></h:commandLink>
-	</h:form>
-	<br></br>
-	<h:link value="Liste des utilisateurs" outcome="users/index.xhtml" /><br></br>
-	<h:link value="Ajouter un utilisateur" outcome="users/create.xhtml" />
-</h:body>
-</html>
+
+    	<ui:composition template="resources/layout.xhtml">
+
+ 
+<ui:define name="title">
+	Accueil
+</ui:define>
+
+<ui:define name="content">
+
+
+    <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>#{reservationBean.count()}</h3>
+
+              <p>Réservations</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>#{paymentBean.count()}<sup style="font-size: 25px"> MAD</sup></h3>
+
+              <p>Profits</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>#{clientBean.count()}</h3>
+
+              <p>Clients</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>#{roomBean.count()}</h3>
+
+              <p>Chambres</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      </section>
+      
+      <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Les méthodes de paiement utilisées</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body chart-responsive">
+              <div class="chart" id="sales-chart" style="height: 300px; position: relative;"></div>
+            </div>
+            <!-- /.box-body -->
+     </div>
+    
+          
+      </ui:define>
+      </ui:composition>
+      </h:body>
+      </html>
+ 

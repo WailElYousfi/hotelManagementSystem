@@ -1,80 +1,98 @@
-<?xml version="1.0" encoding="ISO-8859-1" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Réservations confirmées</title>
-</h:head>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
 <h:body>
-	<h2>Liste des réservations confirmées</h2>
+
+    	<ui:composition template="../resources/layout.xhtml">
+
+ 
+<ui:define name="title">
+	RÃ©servations confirmÃ©es
+</ui:define>
+
+<ui:define name="content">
 	<h:form>
-		<h:dataTable var="r" value="#{reservationBean.getAllReservations('Acceptée')}" border="1">
-			<h:column>
-				<f:facet name="header">Id</f:facet>
-				<h:outputText value="${r.reservationId}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">De</f:facet>
-				<h:outputText value="${r.startDate} "></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Jusqu'à</f:facet>
-				<h:outputText value="${r.endDate}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Date de réservation</f:facet>
-				<h:outputText value="${r.reservationDate}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Statut</f:facet>
-				<h:outputText value="${r.state}"></h:outputText>
-			</h:column>
+	<div class="row">
+        <div class="col-md-12">   
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Liste des rÃ©servations confirmÃ©es</h3>
+            </div>
+            <div class="box-body">
+                <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>De</th>
+                  <th>Jusqu'Ã </th>
+                  <th>Date de rÃ©servation</th>
+                  <th>Statut</th>
+                  <th>Chambre nÂ°</th>
+                  <th>Client</th>
+                  <th>Prix / nuit</th>
+                  <th>Prix total</th>
+                  <th>MÃ©thode de paiement</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody> 
+                <ui:repeat var="r" value="#{reservationBean.getAllReservations('AcceptÃ©e', 'non payees')}" >                         
+                <tr>
+                  <td><h:outputText value="${r.reservationId}"></h:outputText></td>
+                  <td><h:outputText value="${r.startDate} "></h:outputText></td>
+                  <td><h:outputText value="${r.endDate}"></h:outputText></td>
+                  <td><h:outputText value="${r.reservationDate}"></h:outputText></td>
+                  <td><h:outputText value="${r.state}"></h:outputText></td>
+                  <td><h:outputText value="${r.room.roomNumbere}"></h:outputText></td>
+                  <td><h:outputText value="${r.client.firstName} ${r.client.lastName}"></h:outputText></td>
+                  <td><h:outputText value="${r.pricePerNight}"></h:outputText></td>
+                  <td><h:outputText value="${reservationBean.getTotalPrice(r)}"></h:outputText></td>
+                  <td>
+                  <h:selectOneMenu styleClass="form-control"  value="#{paymentBean.method}">
+   				  	<f:selectItem itemValue="Carte bancaire" itemLabel="Carte bancaire" />
+   					<f:selectItem itemValue="Cheque" itemLabel="Cheque" />
+   					<f:selectItem itemValue="En espece" itemLabel="En espece" />
+					</h:selectOneMenu>
+				  </td>
+                  <td><h:commandButton action="#{paymentBean.payReservation(r)}" value="Payer" styleClass="btn btn-primary" /></td>
+                </tr>
+                </ui:repeat>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Id</th>
+                  <th>De</th>
+                  <th>Jusqu'Ã </th>
+                  <th>Date de rÃ©servation</th>
+                  <th>Statut</th>
+                  <th>Chambre nÂ°</th>
+                  <th>Client</th>
+                  <th>Prix / nuit</th>
+                  <th>Prix total</th>
+                  <th>MÃ©thode de paiement</th>
+                  <th></th>
+                </tr>
+                </tfoot>
+              </table>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+     </h:form>
+     
+      
+</ui:define>
 
-			<h:column>
-				<f:facet name="header">Chambre n°</f:facet>
-				<h:outputText value="${r.room.roomNumbere}"></h:outputText>
-			</h:column>
-		
-			<h:column>
-				<f:facet name="header">Client</f:facet>
-				<h:outputText value="${r.client.firstName} ${r.client.lastName}"></h:outputText>
-			</h:column>
-							
-			<h:column>
-				<f:facet name="header">Commercial</f:facet>
-				<h:outputText value="${r.commercial.firstName} ${r.commercial.lastName}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Prix / nuit</f:facet>
-				<h:outputText value="${r.pricePerNight}"></h:outputText>
-			</h:column>
 
-			<h:column>
-				<f:facet name="header">Prix total</f:facet>
-				<h:outputText value="${reservationBean.getTotalPrice(r)}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Prix négocié</f:facet>
-				<h:selectOneMenu value="#{paymentBean.method}">
-   				<f:selectItem itemValue="Carte bancaire" itemLabel="Carte bancaire" />
-   				<f:selectItem itemValue="Chèque" itemLabel="Chèque" />
-   				<f:selectItem itemValue="En espèce" itemLabel="En espèce" />
-			</h:selectOneMenu>
-			</h:column>
-						
-			<h:column>
-                <f:facet name="header"></f:facet>
-                <h:commandButton action="#{paymentBean.payReservation(r)}" value="Payer" />
-            </h:column>     
-		</h:dataTable>
-	</h:form>
+</ui:composition>
+	
+	
 </h:body>
 </html>

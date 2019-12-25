@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      >
+      <h:head>
+        <title>Stats</title>
+    </h:head>
+    <h:body> 
+    	<h1>Statistiques d'admin</h1>
+    	<h:form>
+    	   <h:commandButton value="La liste des clients" action="#{mainoo.afficher('listClients')}" />
+    	   <h:commandButton value="La liste des reservations" action="#{mainoo.afficher('listReservations')}" />
+    	   <h:commandButton value="La liste des paiements" action="#{mainoo.afficher('listPayments')}" />
+    	   <h:commandButton value="La liste des utilisateurs" action="#{mainoo.afficher('listUsers')}" />
+    	   <h:commandButton value="La liste des clients fidéles" action="#{mainoo.afficher('listClientsFideles')}" />
+    	   <h:commandButton value="Graphe réservation par chambre" action="#{main.afficher('reservationPerRoom')}" />
+    	   <h:commandButton value="Graphe total de revenue" action="#{main.afficher('totalRevenuePerMonth')}" />
+    	   
+    	   
+    	   
+    	</h:form>
+    </h:body>
+</html>

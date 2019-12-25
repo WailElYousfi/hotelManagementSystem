@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="totalRevenuePerMonth" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d0e91772-73bf-4fb3-9fff-0d4a6109ff36">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<queryString language="SQL">
+		<![CDATA[SELECT PaymentDate,
+         SUM(AmountPaid) AS TotalSales
+    FROM payments
+GROUP BY PaymentDate
+ORDER BY PaymentDate]]>
+	</queryString>
+	<field name="PaymentDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="PaymentDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="TotalSales" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.label" value="TotalSales"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="800" height="40" uuid="3ba38924-1796-43f2-b03b-f4a2566f3e86"/>
+				<textElement textAlignment="Center">
+					<font size="19"/>
+				</textElement>
+				<text><![CDATA[Total géneré par mois en (MAD)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="212" splitType="Stretch">
+			<barChart>
+				<chart evaluationTime="Report">
+					<reportElement x="80" y="12" width="651" height="200" uuid="f0dedb75-7aa2-48d1-9198-b7dc99189db2"/>
+					<chartTitle>
+						<font size="14" isBold="true"/>
+						<titleExpression><![CDATA["Ce graphe représente le revenue géneré au bout des mois de cette année"]]></titleExpression>
+					</chartTitle>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<dataset resetType="Report"/>
+					<categorySeries>
+						<seriesExpression><![CDATA["Revenue en MAD"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{PaymentDate}.getMonth()]]></categoryExpression>
+						<valueExpression><![CDATA[$F{TotalSales}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#485FA5"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisLabelExpression><![CDATA["Mois"]]></categoryAxisLabelExpression>
+					<categoryAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" verticalTickLabels="false" axisLineColor="#000000">
+							<labelFont>
+								<font size="12" isBold="true"/>
+							</labelFont>
+						</axisFormat>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["Total( en MAD)"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat labelColor="#000000" tickLabelColor="#000000" axisLineColor="#000000">
+							<labelFont>
+								<font size="12" isBold="true"/>
+							</labelFont>
+							<tickLabelFont>
+								<font size="12" isBold="true"/>
+							</tickLabelFont>
+						</axisFormat>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

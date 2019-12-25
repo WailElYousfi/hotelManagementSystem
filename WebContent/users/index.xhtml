@@ -6,57 +6,74 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-	<title>Liste des utilisateurs</title>
-</h:head>
+
 <h:body>
-	<a href="create.xhtml">Ajouter un utilisateur</a><br/><br/>
-	<h2>Liste des utilisateurs</h2><br></br>
-	<h:form>
-		<h:dataTable var="u" value="#{userBean.getAllUsers()}" border="1">
-			<h:column>
-				<f:facet name="header">Id</f:facet>
-				<h:outputText value="${u.userId}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Nom</f:facet>
-				<h:outputText value="${u.firstName} "></h:outputText>
-				<h:outputText value="${u.lastName}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Email</f:facet>
-				<h:outputText value="${u.email}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Num de télé</f:facet>
-				<h:outputText value="${u.phone}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Role</f:facet>
-				<h:outputText value="${u.role.roleName}"></h:outputText>
-			</h:column>
-			
-			<!-- <h:column>
-				<ui:repeat var="res" value="#{u.getReservations()}">
-					<h:outputText value="#{res.reservationId}"></h:outputText>
-				</ui:repeat>
-			</h:column> -->
-			
-			<h:column>
-                <f:facet name="header"></f:facet>
-                <h:commandButton action="#{userBean.editUserRecord(u)}" value="Update" class="btn btn-primary" />
-            </h:column>
-            
-            <h:column>
-                <f:facet name="header"></f:facet>
-                <h:commandButton onclick="if (! confirm('Really you want to delete this?') ) { return false;}; return true; " action="#{userBean.deleteUserRecord(u)}" value="Delete" class="btn btn-danger" />
-            </h:column>
-            
-		</h:dataTable>
-	</h:form>
+
+    	<ui:composition template="../resources/layout.xhtml">
+
+ 
+<ui:define name="title">
+	Liste des utilisateurs
+</ui:define>
+
+<ui:define name="content">
+		<h:form>
+
+	<div class="row">
+        <div class="col-md-12">   
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Liste des utilisateurs</h3>
+            </div>
+            <div class="box-body">
+                <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nom</th>
+                  <th>Adresse electronique</th>
+                  <th>Num de tele</th>
+                  <th>Role</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody> 
+                <ui:repeat var="u" value="#{userBean.getAllUsers()}" >                         
+                <tr>
+                  <td><h:outputText value="${u.userId}"></h:outputText></td>
+                  <td><h:outputText value="${u.firstName} "></h:outputText><h:outputText value="${u.lastName}"></h:outputText></td>
+                  <td><h:outputText value="${u.email}"></h:outputText></td>
+                  <td><h:outputText value="${u.phone}"></h:outputText></td>
+                  <td><h:outputText value="${u.role.roleName}"></h:outputText></td>
+                  <td><h:commandButton action="#{userBean.editUserRecord(u)}" value="Modifier" class="btn btn-primary" /></td>
+                  <td><h:commandButton onclick="if (! confirm('Really you want to delete this?') ) { return false;}; return true; " action="#{userBean.deleteUserRecord(u)}" value="Supprimer" class="btn btn-danger" /></td>
+                </tr>
+                </ui:repeat>
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Id</th>
+                  <th>Nom</th>
+                  <th>Adresse electronique</th>
+                  <th>Num de tele</th>
+                  <th>Role</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                </tfoot>
+              </table>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+     </h:form>
+      
+</ui:define>
+
+
+</ui:composition>
+	
 </h:body>
 </html>

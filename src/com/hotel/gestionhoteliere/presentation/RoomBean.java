@@ -131,6 +131,15 @@ public class RoomBean implements Serializable {
 		session.close();
 		return room;
 	}
+    
+    public Long count() {
+    	Session session = sessionfactory.openSession();
+		Query query = session.createQuery("Select count(c) from Room c");
+		Long nbr = (Long) query.uniqueResult();
+		session.close();
+		return nbr;
+    }
+    
       
 	public List<Room> getAllRooms(){
 		Session session = sessionfactory.openSession();

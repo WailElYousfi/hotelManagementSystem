@@ -59,6 +59,14 @@ public class ClientBean implements Serializable {
 		return client;
 	}
     
+    public Long count() {
+    	Session session = sessionfactory.openSession();
+		Query query = session.createQuery("Select count(c) from Client c");
+		Long nbr = (Long) query.uniqueResult();
+		session.close();
+		return nbr;
+    }
+    
     public Client getClientByCin(String cin) {
 		Session session = sessionfactory.openSession();
 		Query query = session.createQuery("from Client where Cin= :cin");

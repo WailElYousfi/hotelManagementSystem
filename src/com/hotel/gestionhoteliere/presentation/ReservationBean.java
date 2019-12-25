@@ -101,6 +101,16 @@ public class ReservationBean implements Serializable {
 		return reservations;
 	}
 	
+	public List<Reservation> getAllReservations(String state, String condition){
+		Session session = sessionfactory.openSession();
+		Query query = session.createQuery("from Reservation reservation where State=:state and not exists (from Payment as payment where payment.Reservation = reservation.ReservationId )");
+		query.setParameter("state", state);
+		List<Reservation> reservations = new ArrayList<Reservation>();
+		reservations = query.getResultList();
+		session.close();
+		return reservations;
+	}
+	
 	public void getReservationForm(Room room) {
 		this.reservation.setRoom(room);
 	    FacesContext context = FacesContext.getCurrentInstance();
@@ -166,6 +176,13 @@ public class ReservationBean implements Serializable {
         } catch(Exception e){
             System.out.println("Exception in updateReservation method : " + e.getMessage());
         }
+    }
+    public Long count() {
+    	Session session = sessionfactory.openSession();
+		Query query = session.createQuery("Select count(c) from Reservation c where c.State!='Rejetée'");
+		Long nbr = (Long) query.uniqueResult();
+		session.close();
+		return nbr;
     }
 	
 	public void rejectReservation(Reservation reservation) {

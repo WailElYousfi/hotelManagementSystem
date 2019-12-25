@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="factureClient" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="db247a61-cd76-4521-a805-32838490d3af">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<parameter name="id" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[select * 
+from users u,reservations re, rooms ro, payments p,clients c
+where p.comptableId=u.userId
+and p.reservationId=re.reservationId
+and re.clientId=c.clientId
+and re.roomId=ro.roomId
+and p.paymentId=$P{id}
+]]>
+	</queryString>
+	<field name="UserId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="UserId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="Email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="FirstName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="FirstName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="LastName" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="LastName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="Password" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Password"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="Phone" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Phone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="RoleId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="RoleId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="users"/>
+	</field>
+	<field name="ReservationId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ReservationId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="AcceptanceDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="AcceptanceDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="EndDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="EndDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="PricePerNight" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="PricePerNight"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="ReservationDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="ReservationDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="StartDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="StartDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="State" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="State"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="ClientId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ClientId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="CommercialId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="CommercialId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="RoomId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="RoomId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="reservations"/>
+	</field>
+	<field name="COLUMN_18" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="RoomId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rooms"/>
+	</field>
+	<field name="Floor" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Floor"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rooms"/>
+	</field>
+	<field name="RoomNumber" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="RoomNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rooms"/>
+	</field>
+	<field name="Surface" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.label" value="Surface"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rooms"/>
+	</field>
+	<field name="TypeId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="TypeId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="rooms"/>
+	</field>
+	<field name="PaymentId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="PaymentId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="AmountPaid" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="AmountPaid"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="MethodOfPayment" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MethodOfPayment"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="PaymentDate" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="PaymentDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="TransactionNumber" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="TransactionNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="ComptableId" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ComptableId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="COLUMN_29" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ReservationId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="payments"/>
+	</field>
+	<field name="COLUMN_30" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ClientId"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clients"/>
+	</field>
+	<field name="Cin" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Cin"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clients"/>
+	</field>
+	<field name="COLUMN_32" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clients"/>
+	</field>
+	<field name="COLUMN_33" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="FirstName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clients"/>
+	</field>
+	<field name="COLUMN_34" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="LastName"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clients"/>
+	</field>
+	<field name="COLUMN_35" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="Phone"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="clients"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<staticText>
+				<reportElement x="380" y="0" width="100" height="30" uuid="d215c475-8e28-4062-9531-767030d0ed1b"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Facture n°]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="480" y="10" width="70" height="30" uuid="7c786a59-dde4-4880-8436-afdf4a49a184"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TransactionNumber}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="5" width="160" height="20" uuid="769a8a53-77e7-438f-8e30-43f7583e5797"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hotel WailMoad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="25" width="160" height="50" uuid="60a9fd15-70b8-4dda-8575-51d6c46ef1c6"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[wailmoadhotel@gmail.com
+05-28-99-77-15
+M'hannech 2 , Tétouan]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="410" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="10" width="80" height="30" uuid="795d69ff-ddd6-4dd6-b34d-f161f6248dea"/>
+				<textElement>
+					<font size="14" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[De]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="10" width="80" height="20" uuid="ea630d77-7f8f-4996-ad52-c63ae83707ed"/>
+				<textElement>
+					<font size="14" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[A]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="40" width="157" height="20" uuid="6c3d7843-9bb7-4a84-b1a0-06fbdcb070a6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COLUMN_34}+" "+$F{COLUMN_33}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="60" width="157" height="20" uuid="8018f363-e18d-4059-9dd2-67206288d489"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COLUMN_32}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="80" width="157" height="20" uuid="6c02f0f6-3c70-4c88-83aa-d27ea9bec5fa"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COLUMN_35}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="180" width="160" height="30" uuid="70f7e9ab-bd5c-462f-942d-221783634417"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Bonjour Mme/Mr "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="180" width="130" height="30" uuid="65541479-c14f-4ec6-9738-abcc48955b03"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LastName} + " "+ $F{FirstName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="230" width="310" height="30" uuid="101f642c-a39a-44ba-b526-e2523d4affa8"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Cette facture concerne votre réservation de la chambre "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="270" width="80" height="30" uuid="9a7eff15-1eb8-4b19-85d7-f2d340773b77"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{StartDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="270" width="80" height="30" uuid="fdd1f31b-8a51-4df4-bb20-d21b63ce40ba"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Jusqu'à"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="270" width="100" height="30" uuid="9aa0bc80-cd18-418d-8431-ade33bf49f14"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EndDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="230" width="50" height="30" uuid="5e23a12c-ab2f-4946-a6a0-566ad02c955b"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RoomNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="270" width="30" height="30" uuid="301ee320-a3c1-4182-bc14-b66b4b9e04bb"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA["du "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="50" width="157" height="20" uuid="a3f03e07-1b8e-4268-afb8-2e3f57386635"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LastName}+ " " + $F{FirstName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="70" width="157" height="20" uuid="82fd4aa4-d380-4871-afd2-a0cd6093018b"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="90" width="157" height="20" uuid="3c637f8d-6a34-4656-9488-ea62dce695c9"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Phone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="360" width="150" height="50" uuid="f756d2a0-27a2-4c6c-a3f8-de2366a8aa9d"/>
+				<textElement>
+					<font size="22" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Montant total :"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="360" width="90" height="50" uuid="c55e7945-dc87-4455-963a-2764f57aaffa"/>
+				<textElement>
+					<font size="25" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AmountPaid}+ " MAD"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

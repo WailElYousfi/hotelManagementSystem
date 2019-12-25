@@ -109,7 +109,7 @@ public class UserBean implements Serializable {
 				System.out.println("Exception in addUser method: " + e.getMessage());
 			}
 		}else {
-			context.addMessage("myForm:confirmationPassword", new FacesMessage("Password and confirm password don't match"));
+			context.addMessage(null, new FacesMessage("Password and confirm password don't match"));
 		}	
 	}
 		

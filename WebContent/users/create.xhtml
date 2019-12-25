@@ -4,50 +4,76 @@
  
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-<h:head>
-	<title>Liste des utilisateurs</title>
-</h:head>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
 <h:body>
+
+    	<ui:composition template="../resources/layout.xhtml">
+
+ 
+<ui:define name="title">
+	Ajouter un utilisateur
+</ui:define>
+
+<ui:define name="content">
+
 	<h:form id="myForm">
-		<h:panelGrid columns="2"  cellpadding="6" cellspacing="3">
-			<f:facet name="header">Ajouter un utilisateur</f:facet>
-						
-			<h:outputLabel>Nom</h:outputLabel>	
-			<h:inputText value="#{userBean.user.lastName}"/>
-			
-			<h:outputLabel>Prénom</h:outputLabel>	
-			<h:inputText value="#{userBean.user.firstName}"/>
-			
-			<h:outputLabel>Numéro de téléphone</h:outputLabel>	
-			<h:inputText value="#{userBean.user.phone}"/>
-
-			<h:outputLabel>Adresse électronique</h:outputLabel>	
-			<h:inputText value="#{userBean.user.email}"/>
-
-			<h:outputLabel>Mot de passe</h:outputLabel>	
-			<h:inputSecret value="#{userBean.user.password}"/>
-			
-			<h:outputLabel>Confirmation</h:outputLabel>	
-			<h:inputSecret value="#{userBean.confirmation}"/>
-
-			<h:outputLabel>Le role</h:outputLabel>	
-			<h:selectOneMenu value="#{userBean.user.role.roleId}">
+	<div class="box box-danger">
+        <div class="box-header with-border">
+        Ajouter un utilisateur
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <div class="box-body">
+            <div class="form-group">
+            	<h:outputLabel>Nom</h:outputLabel>	
+				<h:inputText styleClass="form-control" value="#{userBean.user.lastName}"/>
+            </div>
+            <div class="form-group">
+            	<h:outputLabel>Prénom</h:outputLabel>	
+				<h:inputText styleClass="form-control" value="#{userBean.user.firstName}"/>
+            </div>
+            <div class="form-group">
+            	<h:outputLabel>Numéro de téléphone</h:outputLabel>	
+				<h:inputText styleClass="form-control" value="#{userBean.user.phone}"/>
+            </div>
+            <div class="form-group">
+            <h:outputLabel>Adresse électronique</h:outputLabel>	
+			<h:inputText styleClass="form-control" value="#{userBean.user.email}"/>
+            </div>
+            <div class="form-group">
+            <h:outputLabel>Mot de passe</h:outputLabel>	
+			<h:inputSecret styleClass="form-control" value="#{userBean.user.password}"/>
+            </div>
+            <div class="form-group">
+            <h:outputLabel>Confirmation</h:outputLabel>	
+			<h:inputSecret styleClass="form-control" value="#{userBean.confirmation}"/>
+					<h:message globalOnly="true" style="color:red;margin:8px;"/>		
+            </div>   
+            <div class="form-group">           
+            <h:outputLabel>Le role</h:outputLabel>	
+			<h:selectOneMenu styleClass="form-control" value="#{userBean.user.role.roleId}">
 		    <f:selectItems value="#{roleBean.getAllRoles()}" 
 		    	var="r"
 		    	itemValue="#{r.roleId}"
 		    	itemLabel="#{r.roleName}" />
-			</h:selectOneMenu>
+			</h:selectOneMenu>  
+			</div>  
+            <div class="form-group">           			
+				<h:commandButton styleClass="btn btn-primary" value="Ajouter" action="#{userBean.addUser()}"/>
+			</div>
+			                                        
+            
+        </div>
+       </div>
 		
-			<f:facet name="footer">
-				<h:commandButton value="Ajouter" action="#{userBean.addUser()}"/>
-			</f:facet>
-		</h:panelGrid><br></br>
 		
-		<h:message for="confirmationPassword" style="color:red;margin:8px;"/>
 	
 	</h:form><br></br>
-		<a href="index.xhtml">Retour</a>
 	
+	</ui:define>
+</ui:composition>
+
 </h:body>
 </html>

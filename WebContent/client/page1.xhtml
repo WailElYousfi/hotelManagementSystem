@@ -9,70 +9,14 @@
       >
     <h:body>
     	
-    	<ui:composition template="commonLayout.xhtml">
+    	<ui:composition template="../resources/layout.xhtml">
 
-
-<ui:define name="menu">
-	<ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="destination.html" class="nav-link">Destination</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	          <li class="nav-item cta"><a href="#" class="nav-link">Book Now</a></li>
-	 </ul>
+ 
+<ui:define name="title">
+	test
 </ui:define>
     	
-    	
-<ui:define name="search">
-			<section class="ftco-section ftco-no-pb ftco-no-pt">
-    	<div class="container">
-	    	<div class="row">
-					<div class="col-md-12">
-						<div class="search-wrap-1 ftco-animate p-4">
-							<form action="#" class="search-property-1">
-		        		<div class="row">
-		        			<div class="col-lg align-items-end">
-		        				<div class="form-group">
-		        					<label for="#">Date de début</label>
-		          				<div class="form-field">
-		          					<div class="icon"><span class="ion-ios-search"></span></div>
-		          					<h:inputText value="#{roomBean.debut}" styleClass="checkout_date form-control datepicker" >
-         								<f:passThroughAttribute name="placeHolder" value="yyyy-MM-dd"/>
-										<f:convertDateTime pattern="yyyy-MM-dd"/>
-         							</h:inputText>
-				              </div>
-			              </div>
-		        			</div>
-		        			<div class="col-lg align-items-end">
-		        				<div class="form-group">
-		        					<label for="#">Date de fin</label>
-		        					<div class="form-field">
-		          					<div class="icon"><span class="ion-ios-calendar"></span></div>
 
-									<h:inputText value="#{roomBean.fin}" styleClass="checkout_date form-control datepicker" >
-					         		    <f:passThroughAttribute name="placeHolder" value="yyyy-MM-dd"/>
-										<f:convertDateTime pattern="yyyy-MM-dd"/>
-									</h:inputText>
-				              </div>
-			              </div>
-		        			</div>
-
-		        			<div class="col-lg align-self-end">
-		        				<div class="form-group">
-		        					<div class="form-field">
-		        					<h:commandButton styleClass="form-control btn btn-primary" value="Rechercher" action="#{roomBean.searchRooms()}"/>
-	  				            </div>
-			              </div>
-		        			</div>
-		        		</div>
-		        	</form>
-		        </div>
-					</div>
-	    	</div>
-	    </div>
-    </section>
-</ui:define>
     		
     	<ui:define name="content">
 			<h2>hahahaha</h2>
